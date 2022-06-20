@@ -1,0 +1,24 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+group = 'com.jgazula'
+version = '0.1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility(JavaVersion.VERSION_11)
+    targetCompatibility(JavaVersion.VERSION_11)
+}
+
+compileJava {
+    options.release = 11
+}
+
+gradlePlugin {
+    plugins {
+        typesafeResources {
+            id = 'com.jgazula.typesafe-resources'
+            implementationClass = 'com.jgazula.gradle.TypesafeResourcesPlugin'
+        }
+    }
+}
