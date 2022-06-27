@@ -1,24 +1,43 @@
 plugins {
-    id 'java-gradle-plugin'
+    id "java-gradle-plugin"
+    id "net.ltgt.errorprone" version "2.0.2"
 }
 
-group = 'com.jgazula'
-version = '0.1.0-SNAPSHOT'
+dependencies {
+    errorprone "com.google.errorprone:error_prone_core:2.14.0"
+    annotationProcessor "com.uber.nullaway:nullaway:0.9.7"
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = "com.jgazula"
+version = "0.1.0-SNAPSHOT"
 
 java {
-    sourceCompatibility(JavaVersion.VERSION_11)
-    targetCompatibility(JavaVersion.VERSION_11)
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
 }
 
-compileJava {
-    options.release = 11
+tasks.getByName("compileJava").configure {
+    options.errorprone {
+        disableWarningsInGeneratedCode = true
+        check("NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR)
+        option("NullAway:AnnotatedPackages", "com.jgazula")
+    }
+}
+
+tasks.getByName("compileTestJava").configure {
+    options.errorprone.enabled = false
 }
 
 gradlePlugin {
     plugins {
         typesafeResources {
-            id = 'com.jgazula.typesafe-resources'
-            implementationClass = 'com.jgazula.gradle.TypesafeResourcesPlugin'
+            id = "com.jgazula.typesafe-resources"
+            implementationClass = "com.jgazula.gradle.TypesafeResourcesPlugin"
         }
     }
 }
