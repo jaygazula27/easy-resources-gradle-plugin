@@ -6,6 +6,8 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.compile.JavaCompile;
 
+import java.nio.file.Path;
+
 public class TypesafeResourcesPlugin implements Plugin<Project> {
 
     @Override
@@ -14,6 +16,8 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
                 .create(TypesafeResourcesExtension.EXTENSION_NAME, TypesafeResourcesExtension.class);
 
         registerPropertiesConstantsTask(project, extension);
+
+        addGeneratedDirAsCompileTarget(project);
     }
 
     private static void registerPropertiesConstantsTask(Project project,
@@ -34,9 +38,20 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
                 task.getFile().set(extension.getFile());
                 task.getGeneratedPackageName().set(extension.getGeneratedPackageName());
                 task.getGeneratedClassName().set(extension.getGeneratedClassName());
+                task.getGeneratedSourcesDir().set(generatedSourcesDir(project).toFile());
             });
 
             project.getTasks().withType(JavaCompile.class).configureEach(task -> task.dependsOn(pcTask));
         });
+    }
+
+    private static Path generatedSourcesDir(Project project) {
+        return Path.of(project.getBuildDir().getAbsolutePath(), "generated", "sources", "typesafe-resources", "main",
+                "java");
+    }
+
+    private static void addGeneratedDirAsCompileTarget(Project project) {
+        var generatedSrcDir = generatedSourcesDir(project);
+        project.getTasks().withType(JavaCompile.class).configureEach(t -> t.source(generatedSrcDir));
     }
 }

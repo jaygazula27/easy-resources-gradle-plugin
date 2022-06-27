@@ -6,10 +6,12 @@ plugins {
 dependencies {
     errorprone "com.google.errorprone:error_prone_core:2.14.0"
     annotationProcessor "com.uber.nullaway:nullaway:0.9.7"
+    implementation "com.jgazula:typesafe-resources-core:0.1.0-SNAPSHOT"
 }
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 group = "com.jgazula"
