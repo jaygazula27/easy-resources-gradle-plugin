@@ -51,7 +51,9 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
     }
 
     private static void addGeneratedDirAsCompileTarget(Project project) {
-        var generatedSrcDir = generatedSourcesDir(project);
-        project.getTasks().withType(JavaCompile.class).configureEach(t -> t.source(generatedSrcDir));
+        var generatedSrcDir = Path.of(generatedSourcesDir(project).toString(), "**");
+        project.getTasks().withType(JavaCompile.class).configureEach(t -> {
+            t.getIncludes().add(generatedSrcDir.toString());
+        });
     }
 }
