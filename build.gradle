@@ -4,12 +4,6 @@ plugins {
     id "net.ltgt.errorprone" version "2.0.2"
 }
 
-dependencies {
-    errorprone "com.google.errorprone:error_prone_core:2.14.0"
-    annotationProcessor "com.uber.nullaway:nullaway:0.9.7"
-    implementation "com.jgazula:typesafe-resources-core:0.1.0-SNAPSHOT"
-}
-
 repositories {
     mavenCentral()
     mavenLocal()
@@ -32,6 +26,10 @@ java {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
+
 tasks.getByName("compileJava").configure {
     options.errorprone {
         disableWarningsInGeneratedCode = true
@@ -44,11 +42,20 @@ tasks.getByName("compileTestJava").configure {
     options.errorprone.enabled = false
 }
 
+dependencies {
+    errorprone "com.google.errorprone:error_prone_core:2.14.0"
+    annotationProcessor "com.uber.nullaway:nullaway:0.9.7"
+    implementation "com.jgazula:typesafe-resources-core:0.1.0-SNAPSHOT"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
 gradlePlugin {
     plugins {
         typesafeResources {
             id = "com.jgazula.typesafe-resources"
-            implementationClass = "com.jgazula.gradle.TypesafeResourcesPlugin"
+            implementationClass = "com.jgazula.typesaferesources.gradle.TypesafeResourcesPlugin"
         }
     }
 }

@@ -1,7 +1,7 @@
-package com.jgazula.gradle;
+package com.jgazula.typesaferesources.gradle;
 
-import com.jgazula.gradle.propertiesconstants.PropertiesConstantsExtension;
-import com.jgazula.gradle.propertiesconstants.PropertiesConstantsTask;
+import com.jgazula.typesaferesources.gradle.propertiesconstants.PropertiesConstantsExtension;
+import com.jgazula.typesaferesources.gradle.propertiesconstants.PropertiesConstantsTask;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.compile.JavaCompile;

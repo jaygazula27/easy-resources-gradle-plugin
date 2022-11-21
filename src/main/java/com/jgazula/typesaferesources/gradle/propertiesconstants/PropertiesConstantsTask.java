@@ -1,4 +1,4 @@
-package com.jgazula.gradle.propertiesconstants;
+package com.jgazula.typesaferesources.gradle.propertiesconstants;
 
 import com.jgazula.typesaferesources.core.propertiesconstants.PCConfig;
 import com.jgazula.typesaferesources.core.propertiesconstants.PCFileConfig;

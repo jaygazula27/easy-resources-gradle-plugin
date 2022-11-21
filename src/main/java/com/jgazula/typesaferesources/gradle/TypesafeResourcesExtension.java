@@ -1,4 +1,4 @@
-package com.jgazula.gradle;
+package com.jgazula.typesaferesources.gradle;
 
 import org.gradle.api.plugins.ExtensionAware;
 
