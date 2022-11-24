@@ -1,2 +1,0 @@
-rootProject.name = 'typesafe-resources-gradle-plugin-e2e'
-include 'properties-constants-e2e'
