@@ -1,5 +1,7 @@
-package com.jgazula;
+package com.e2e;
 
+import com.jgazula.DatabaseProperties;
+import com.jgazula.MainProperties;
 import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
@@ -16,7 +18,7 @@ class PropertiesConstantsTests {
         properties.load(getClass().getResourceAsStream("/database.properties"));
 
         // then
-        assertThat(properties.getProperty(com.jgazula.DatabaseProperties.SPRING_DATASOURCE_URL)).isEqualTo("jdbc:mysql://localhost/test");
+        assertThat(properties.getProperty(DatabaseProperties.SPRING_DATASOURCE_URL)).isEqualTo("jdbc:mysql://localhost/test");
         assertThat(properties.getProperty(DatabaseProperties.SPRING_DATASOURCE_USERNAME)).isEqualTo("dbuser");
         assertThat(properties.getProperty(DatabaseProperties.SPRING_DATASOURCE_PASSWORD)).isEqualTo("dbpass");
         assertThat(properties.getProperty(DatabaseProperties.SPRING_DATASOURCE_DRIVER_CLASS_NAME)).isEqualTo("com.mysql.jdbc.Driver");
