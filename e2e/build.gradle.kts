@@ -21,22 +21,16 @@ tasks {
 
 typesafeResources {
     propertiesConstants {
-
-    }
-}
-
-typesafeResources {
-    propertiesConstants {
         create("database") {
             file.set(File("src/main/resources/database.properties"))
             generatedPackageName.set("com.jgazula")
-            generatedClassName.set("Database")
+            generatedClassName.set("DatabaseProperties")
         }
 
         create("application") {
             file.set(File("src/main/resources/main.properties"))
             generatedPackageName.set("com.jgazula")
-            generatedClassName.set("Main")
+            generatedClassName.set("MainProperties")
         }
     }
 }

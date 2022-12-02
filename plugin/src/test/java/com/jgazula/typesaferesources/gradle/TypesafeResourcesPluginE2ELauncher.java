@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TypesafeResourcesPluginE2ELauncher {
 
@@ -19,21 +18,17 @@ public class TypesafeResourcesPluginE2ELauncher {
 
     @Test
     public void checkE2EProject() {
-        // TODO the unit tests in the E2E project are not executing.
-        // https://discuss.gradle.org/t/testkit-downloading-dependencies/12305/2
-
         // when
         var result = GradleRunner.create()
                 .withProjectDir(E2E_PROJECT.toFile())
-                .withArguments("clean", "test")
+                .withArguments("clean", "check")
                 .withPluginClasspath()
                 .withTestKitDir(E2E_PROJECT_TEST_KIT_DIR.toAbsolutePath().toFile())
                 .build();
 
         // then
-        var checkTask = result.task("check");
-        System.out.println(result.getOutput());
-        assertNotNull(checkTask);
-        assertEquals(checkTask.getOutcome(), TaskOutcome.SUCCESS);
+        var checkTask = result.task(":check");
+        assertThat(checkTask).isNotNull();
+        assertThat(checkTask.getOutcome()).isEqualTo(TaskOutcome.SUCCESS);
     }
 }

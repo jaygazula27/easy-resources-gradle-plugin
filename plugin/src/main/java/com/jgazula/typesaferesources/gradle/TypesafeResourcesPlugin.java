@@ -5,6 +5,8 @@ import com.jgazula.typesaferesources.gradle.propertiesconstants.PropertiesConsta
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlugin;
+import org.gradle.api.tasks.SourceSet;
+import org.gradle.api.tasks.SourceSetContainer;
 import org.gradle.api.tasks.compile.JavaCompile;
 
 import java.nio.file.Path;
@@ -13,9 +15,11 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        // Always automatically apply the Java plugin.
+        project.getPluginManager().apply(JavaPlugin.class);
+
         TypesafeResourcesExtension extension = project.getExtensions()
                 .create(TypesafeResourcesExtension.EXTENSION_NAME, TypesafeResourcesExtension.class);
-
         registerPropertiesConstantsTask(project, extension);
 
         addGeneratedDirAsCompileTarget(project);
@@ -52,14 +56,9 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
     }
 
     private static void addGeneratedDirAsCompileTarget(Project project) {
-        var generatedSrcDir = Path.of(generatedSourcesDir(project).toString(), "**");
-        project.getPlugins().withType(JavaPlugin.class).configureEach(a -> {
-        });
-
-
-        project.getTasks().withType(JavaCompile.class).configureEach(t -> {
-//            t.getIncludes().add(generatedSrcDir.toString());
-            t.include(generatedSrcDir.toString());
-        });
+        project.getExtensions().getByType(SourceSetContainer.class)
+                .getByName(SourceSet.MAIN_SOURCE_SET_NAME)
+                .getJava()
+                .srcDir(generatedSourcesDir(project));
     }
 }
