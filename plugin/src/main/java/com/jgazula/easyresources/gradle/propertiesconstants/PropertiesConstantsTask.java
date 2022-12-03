@@ -1,7 +1,7 @@
 package com.jgazula.easyresources.gradle.propertiesconstants;
 
-import com.jgazula.easyresources.core.propertiesconstants.PCConfig;
-import com.jgazula.easyresources.core.propertiesconstants.PCFileConfig;
+import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsConfig;
+import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsFileConfig;
 import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstants;
 import com.jgazula.easyresources.core.util.ValidationException;
 import org.gradle.api.DefaultTask;
@@ -42,7 +42,7 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
     @TaskAction
     public void execute() {
         try {
-            var config = PCConfig.builder()
+            var config = PropertiesConstantsConfig.builder()
                     .fileConfigs(Collections.singletonList(toPCFileConfig()))
                     .destinationDir(getGeneratedSourcesDir().getAsFile().get().toPath())
                     .build();
@@ -58,8 +58,8 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
 
     }
 
-    private PCFileConfig toPCFileConfig() {
-        return PCFileConfig.builder()
+    private PropertiesConstantsFileConfig toPCFileConfig() {
+        return PropertiesConstantsFileConfig.builder()
                 .propertiesPath(getFile().getAsFile().get().toPath())
                 .generatedClassName(getGeneratedClassName().get())
                 .generatedPackageName(getGeneratedPackageName().get())
