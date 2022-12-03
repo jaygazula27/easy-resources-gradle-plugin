@@ -15,6 +15,11 @@ import org.gradle.api.tasks.TaskAction;
 
 import java.util.Collections;
 
+/**
+ * The task that will generate sources which consist of constant fields that point to the keys of properties files.
+ * <br/>
+ * This will allow developers to read data from properties files in a relatively typesafe manner.
+ */
 public abstract class PropertiesConstantsTask extends DefaultTask {
 
     public static final String TASK_NAME = "propertiesConstants";
