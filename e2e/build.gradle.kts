@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("com.jgazula.typesafe-resources")
+    id("com.jgazula.easy-resources")
 }
 
 repositories {
@@ -19,7 +19,7 @@ tasks {
     }
 }
 
-typesafeResources {
+easyResources {
     propertiesConstants {
         create("database") {
             file.set(File("src/main/resources/database.properties"))

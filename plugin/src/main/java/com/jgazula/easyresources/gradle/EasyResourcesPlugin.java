@@ -1,7 +1,7 @@
-package com.jgazula.typesaferesources.gradle;
+package com.jgazula.easyresources.gradle;
 
-import com.jgazula.typesaferesources.gradle.propertiesconstants.PropertiesConstantsExtension;
-import com.jgazula.typesaferesources.gradle.propertiesconstants.PropertiesConstantsTask;
+import com.jgazula.easyresources.gradle.propertiesconstants.PropertiesConstantsExtension;
+import com.jgazula.easyresources.gradle.propertiesconstants.PropertiesConstantsTask;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlugin;
@@ -11,29 +11,29 @@ import org.gradle.api.tasks.compile.JavaCompile;
 
 import java.nio.file.Path;
 
-public class TypesafeResourcesPlugin implements Plugin<Project> {
+public class EasyResourcesPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
         // Always automatically apply the Java plugin.
         project.getPluginManager().apply(JavaPlugin.class);
 
-        TypesafeResourcesExtension extension = project.getExtensions()
-                .create(TypesafeResourcesExtension.EXTENSION_NAME, TypesafeResourcesExtension.class);
+        EasyResourcesExtension extension = project.getExtensions()
+                .create(EasyResourcesExtension.EXTENSION_NAME, EasyResourcesExtension.class);
         registerPropertiesConstantsTask(project, extension);
 
         addGeneratedDirAsCompileTarget(project);
     }
 
     private static void registerPropertiesConstantsTask(Project project,
-                                                        TypesafeResourcesExtension typesafeResourcesExtension) {
+                                                        EasyResourcesExtension easyResourcesExtension) {
         var objectFactory = project.getObjects();
 
         var propertiesConstantsContainer =
                 objectFactory.domainObjectContainer(PropertiesConstantsExtension.class,
                         name -> objectFactory.newInstance(PropertiesConstantsExtension.class, name));
 
-        typesafeResourcesExtension.getExtensions()
+        easyResourcesExtension.getExtensions()
                 .add(PropertiesConstantsExtension.EXTENSION_NAME, propertiesConstantsContainer);
 
         propertiesConstantsContainer.all(extension -> {
@@ -51,7 +51,7 @@ public class TypesafeResourcesPlugin implements Plugin<Project> {
     }
 
     private static Path generatedSourcesDir(Project project) {
-        return Path.of(project.getBuildDir().getAbsolutePath(), "generated", "sources", "typesafe-resources", "main",
+        return Path.of(project.getBuildDir().getAbsolutePath(), "generated", "sources", "easy-resources", "main",
                 "java");
     }
 

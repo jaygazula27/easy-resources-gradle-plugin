@@ -1,1 +1,1 @@
-rootProject.name = "typesafe-resources-gradle-plugin-e2e"
+rootProject.name = "easy-resources-gradle-plugin-e2e"

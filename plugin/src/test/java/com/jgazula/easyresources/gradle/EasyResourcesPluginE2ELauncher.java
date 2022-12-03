@@ -1,4 +1,4 @@
-package com.jgazula.typesaferesources.gradle;
+package com.jgazula.easyresources.gradle;
 
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TypesafeResourcesPluginE2ELauncher {
+public class EasyResourcesPluginE2ELauncher {
 
     private static final Path E2E_PROJECT = Path.of("")
                                                 .toAbsolutePath()

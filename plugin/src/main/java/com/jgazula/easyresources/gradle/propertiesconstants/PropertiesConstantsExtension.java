@@ -1,4 +1,4 @@
-package com.jgazula.typesaferesources.gradle.propertiesconstants;
+package com.jgazula.easyresources.gradle.propertiesconstants;
 
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.provider.Property;

@@ -1,9 +1,9 @@
-package com.jgazula.typesaferesources.gradle.propertiesconstants;
+package com.jgazula.easyresources.gradle.propertiesconstants;
 
-import com.jgazula.typesaferesources.core.propertiesconstants.PCConfig;
-import com.jgazula.typesaferesources.core.propertiesconstants.PCFileConfig;
-import com.jgazula.typesaferesources.core.propertiesconstants.PropertiesConstants;
-import com.jgazula.typesaferesources.core.util.ValidationException;
+import com.jgazula.easyresources.core.propertiesconstants.PCConfig;
+import com.jgazula.easyresources.core.propertiesconstants.PCFileConfig;
+import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstants;
+import com.jgazula.easyresources.core.util.ValidationException;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.file.RegularFileProperty;

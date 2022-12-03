@@ -6,7 +6,7 @@
 ```
 idea {
     module {
-        sourceDirs += file("build/generated/sources/typesafe-resources/")
+        sourceDirs += file("build/generated/sources/easy-resources/")
     }
 }
 ```
