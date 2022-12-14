@@ -1,12 +1,24 @@
 # easy-resources-gradle-plugin
 
 
+# Table of contents
+
+1. [Overview](#overview)
+2. [Requirements](#requirements)
+3. [Usage](#usage)
+   1. [propertiesConstants](#propertiesconstants)
+4. [Development](#development)
+5. [License](#license)
+
+
 ## Overview
 
 This gradle plugin enables easy and typesafe access to resources. This is achieved by generating code with the following features:
 * Classes consisting of `static final` fields which point to the keys of properties files.
 * Classes consisting of methods with the appropriate parameters for dynamic internationalization which allows for lookup of localized strings.
     * Feature implementation in progress.
+
+For the maven alternative of this plugin, take a look at [easy-resources-maven-plugin](https://github.com/jaygazula27/easy-resources-maven-plugin).
 
 
 ## Requirements
@@ -79,6 +91,7 @@ public class DatabaseProperties {
 ## Development
 
 * Requires Java 11.
+* The parsing and class generation logic is implemented in a dependency of this project: [easy-resources-core](https://github.com/jaygazula27/easy-resources-core)
 * To build the project (and run unit and e2e tests): `./gradlw clean build`
 
 
