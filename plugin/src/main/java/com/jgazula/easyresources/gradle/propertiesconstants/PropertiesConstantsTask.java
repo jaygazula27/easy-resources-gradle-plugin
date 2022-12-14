@@ -4,6 +4,7 @@ import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsCon
 import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsFileConfig;
 import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstants;
 import com.jgazula.easyresources.core.util.ValidationException;
+import com.jgazula.easyresources.gradle.Constants;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.file.RegularFileProperty;
@@ -43,6 +44,7 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
     public void execute() {
         try {
             var config = PropertiesConstantsConfig.builder()
+                    .generatedBy(Constants.PLUGIN_NAME)
                     .fileConfigs(Collections.singletonList(toPCFileConfig()))
                     .destinationDir(getGeneratedSourcesDir().getAsFile().get().toPath())
                     .build();
