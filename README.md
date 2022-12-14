@@ -3,12 +3,12 @@
 
 # Table of contents
 
-1. [Overview](#overview)
-2. [Requirements](#requirements)
-3. [Usage](#usage)
-   1. [propertiesConstants](#propertiesconstants)
-4. [Development](#development)
-5. [License](#license)
+* [Overview](#overview)
+* [Requirements](#requirements)
+* [Usage](#usage)
+  * [propertiesConstants](#propertiesconstants)
+* [Development](#development)
+* [License](#license)
 
 
 ## Overview
