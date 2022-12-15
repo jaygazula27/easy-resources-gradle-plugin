@@ -1,0 +1,1 @@
+rootProject.name = "easy-resources-gradle-plugin-e2e"
