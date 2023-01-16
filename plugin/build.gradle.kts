@@ -61,6 +61,14 @@ gradlePlugin {
             id = property("id").toString()
             implementationClass = property("implementation.class").toString()
             version = property("version").toString()
+            displayName = property("id").toString()
         }
     }
+}
+
+pluginBundle {
+    website = "https://github.com/jaygazula27/easy-resources-gradle-plugin"
+    vcsUrl = "https://github.com/jaygazula27/easy-resources-gradle-plugin"
+    tags = listOf("typesafe", "resources")
+    description = "This gradle plugin enables easy and typesafe access to resources."
 }
