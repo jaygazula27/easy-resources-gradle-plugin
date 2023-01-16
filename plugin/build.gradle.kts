@@ -55,6 +55,10 @@ release {
     tagTemplate.set("v\$version")
 }
 
+project.tasks.named("afterReleaseBuild") {
+    dependsOn("publishPlugins")
+}
+
 gradlePlugin {
     plugins {
         create(property("id").toString()) {
