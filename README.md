@@ -1,6 +1,6 @@
 # easy-resources-gradle-plugin
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jaygazula27/easy-resources-gradle-plugin/gradle-build.yml)](https://github.com/jaygazula27/easy-resources-maven-plugin/actions/workflows/maven-build.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jaygazula27/easy-resources-gradle-plugin/gradle-build.yml)](https://github.com/jaygazula27/easy-resources-gradle-plugin/actions/workflows/gradle-build.yml)
 [![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/com.jgazula.easy-resources)](https://plugins.gradle.org/plugin/com.jgazula.easy-resources)
 [![GitHub](https://img.shields.io/github/license/jaygazula27/easy-resources-gradle-plugin)](LICENSE)
 
