@@ -201,7 +201,7 @@ public class AppResourceBundle {
 ```
 
 As seen above in the generated class, the methods correspond to property keys of the resource bundle. 
-Additionally, the parameters of these methods allow for formatting messages in a type-safe manner.
+Additionally, the parameters of these methods allow for formatting messages in a typesafe manner.
 
 In order to use the generated class, the developer simply needs to construct an instance by passing in the appropriate resource bundle.
 Since the instance of this generated class is thread safe, it can then be exposed as a bean and injected if using a framework such Spring, Quarkus, etc.
