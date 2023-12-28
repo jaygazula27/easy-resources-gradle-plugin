@@ -47,7 +47,7 @@ to configure the various tasks of this plugin.
 
 ### propertiesConstants
 
-The `propertiesConstants` extension can be used to generate classes with `static final` fields which point to the keys of properties files.
+The `propertiesConstants` extension generates classes with `static final` fields which point to the keys of properties files.
 
 Parameters:
 
@@ -95,7 +95,7 @@ public class DatabaseProperties {
 
 ### enhanceResourceBundle
 
-The `enhanceResourceBundle` extension can be used to generate classes with methods that correspond to the keys of the properties in a resource bundle.
+The `enhanceResourceBundle` extension generates classes with methods that correspond to the keys of the properties in a resource bundle.
 
 Parameters:
 
@@ -205,6 +205,7 @@ Additionally, the parameters of these methods allow for formatting messages in a
 
 In order to use the generated class, the developer simply needs to construct an instance by passing in the appropriate resource bundle.
 Since the instance of this generated class is thread safe, it can then be exposed as a bean and injected if using a framework such Spring, Quarkus, etc.
+
 
 ## Development
 
