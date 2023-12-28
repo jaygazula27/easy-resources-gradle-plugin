@@ -1,12 +1,13 @@
 package com.jgazula.easyresources.gradle.propertiesconstants;
 
+import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstants;
 import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsConfig;
 import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstantsFileConfig;
-import com.jgazula.easyresources.core.propertiesconstants.PropertiesConstants;
 import com.jgazula.easyresources.core.util.ValidationException;
 import com.jgazula.easyresources.gradle.Constants;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
+import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
@@ -24,9 +25,6 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
 
     public static final String TASK_NAME = "propertiesConstants";
 
-    @Input
-    public abstract Property<String> getCustomName();
-
     @InputFile
     public abstract RegularFileProperty getFile();
 
@@ -37,7 +35,7 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
     public abstract Property<String> getGeneratedClassName();
 
     @OutputDirectory
-    public abstract RegularFileProperty getGeneratedSourcesDir();
+    public abstract DirectoryProperty getGeneratedSourcesDir();
 
     @TaskAction
     public void execute() {
@@ -56,7 +54,6 @@ public abstract class PropertiesConstantsTask extends DefaultTask {
             throw new GradleException("Unexpected error when generating constants for properties file: " +
                     getFile().getAsFile().get(), e);
         }
-
     }
 
     private PropertiesConstantsFileConfig toPCFileConfig() {

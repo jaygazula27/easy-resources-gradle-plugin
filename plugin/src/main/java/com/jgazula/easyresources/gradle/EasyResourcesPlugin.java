@@ -1,5 +1,7 @@
 package com.jgazula.easyresources.gradle;
 
+import com.jgazula.easyresources.gradle.enhancedresourcebundle.EnhanceResourceBundleExtension;
+import com.jgazula.easyresources.gradle.enhancedresourcebundle.EnhanceResourceBundleTask;
 import com.jgazula.easyresources.gradle.propertiesconstants.PropertiesConstantsExtension;
 import com.jgazula.easyresources.gradle.propertiesconstants.PropertiesConstantsTask;
 import org.gradle.api.Plugin;
@@ -25,6 +27,7 @@ public class EasyResourcesPlugin implements Plugin<Project> {
         EasyResourcesExtension extension = project.getExtensions()
                 .create(EasyResourcesExtension.EXTENSION_NAME, EasyResourcesExtension.class);
         registerPropertiesConstantsTask(project, extension);
+        registerEnhanceResourceBundleTask(project, extension);
 
         addGeneratedDirAsCompileTarget(project);
     }
@@ -43,7 +46,6 @@ public class EasyResourcesPlugin implements Plugin<Project> {
         propertiesConstantsContainer.all(extension -> {
             var taskName = String.format("%s_%s", PropertiesConstantsTask.TASK_NAME, extension.getName());
             var pcTask = project.getTasks().register(taskName, PropertiesConstantsTask.class, task -> {
-                task.getCustomName().set(extension.getName());
                 task.getFile().set(extension.getFile());
                 task.getGeneratedPackageName().set(extension.getGeneratedPackageName());
                 task.getGeneratedClassName().set(extension.getGeneratedClassName());
@@ -51,6 +53,31 @@ public class EasyResourcesPlugin implements Plugin<Project> {
             });
 
             project.getTasks().withType(JavaCompile.class).configureEach(task -> task.dependsOn(pcTask));
+        });
+    }
+
+    private static void registerEnhanceResourceBundleTask(Project project,
+                                                          EasyResourcesExtension easyResourcesExtension) {
+        var objectFactory = project.getObjects();
+
+        var enhancedResourceBundleContainer =
+                objectFactory.domainObjectContainer(EnhanceResourceBundleExtension.class,
+                        name -> objectFactory.newInstance(EnhanceResourceBundleExtension.class, name));
+
+        easyResourcesExtension.getExtensions()
+                .add(EnhanceResourceBundleExtension.EXTENSION_NAME, enhancedResourceBundleContainer);
+
+        enhancedResourceBundleContainer.all(extension -> {
+            var taskName = String.format("%s_%s", EnhanceResourceBundleTask.TASK_NAME, extension.getName());
+            var erbTask = project.getTasks().register(taskName, EnhanceResourceBundleTask.class, task -> {
+                task.getBundlePath().set(extension.getBundlePath());
+                task.getBundleName().set(extension.getBundleName());
+                task.getGeneratedPackageName().set(extension.getGeneratedPackageName());
+                task.getGeneratedClassName().set(extension.getGeneratedClassName());
+                task.getGeneratedSourcesDir().set(generatedSourcesDir(project).toFile());
+            });
+
+            project.getTasks().withType(JavaCompile.class).configureEach(task -> task.dependsOn(erbTask));
         });
     }
 

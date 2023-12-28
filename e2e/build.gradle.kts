@@ -33,6 +33,15 @@ easyResources {
             generatedClassName.set("MainProperties")
         }
     }
+
+    enhanceResourceBundle {
+        create("AppBundle") {
+            bundlePath.set(File("src/main/resources/"))
+            bundleName.set("AppBundle")
+            generatedPackageName.set("com.jgazula")
+            generatedClassName.set("AppResourceBundle")
+        }
+    }
 }
 
 dependencies {
