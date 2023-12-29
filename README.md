@@ -130,7 +130,7 @@ planet.quantity=There are {0,number,integer} planets.
 monthly.payment=The monthly {1} bill is typically over {0,number,currency}.
 ```
 
-as well as a `AppBundle_fr_FR.properties` with the following contents...
+as well as a `AppBundle_fr_FR.properties` file with the following contents...
 
 ```properties
 date.of.birth=The applicant''s DOB is {0,date}.
