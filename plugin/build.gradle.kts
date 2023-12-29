@@ -41,7 +41,7 @@ tasks {
 }
 
 dependencies {
-    implementation("com.jgazula:easy-resources-core:0.2.0-SNAPSHOT")
+    implementation("com.jgazula:easy-resources-core:0.2.0")
 
     errorprone("com.google.errorprone:error_prone_core:2.16")
     annotationProcessor("com.uber.nullaway:nullaway:0.10.5")
